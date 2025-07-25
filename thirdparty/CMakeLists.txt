@@ -2,6 +2,7 @@
 # LLVM/MLIR
 #
 
+# Macro to set LLVM build flags
 macro(set_llvm_flags)
     # add type
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
@@ -33,9 +34,13 @@ macro(set_llvm_flags)
     set(LLVM_INSTALL_UTILS ON CACHE BOOL "" FORCE)
 endmacro()
 
-
+# Set LLVM build flags
 set_llvm_flags()
+
+# Add the LLVM project directory
 add_subdirectory(llvm-project/llvm EXCLUDE_FROM_ALL)
+
+# Set MLIR source and binary directories
 set(MLIR_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/llvm-project/mlir/include")
 set(MLIR_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/llvm-project/llvm/tools/mlir/include")
 include_directories(SYSTEM ${MLIR_SOURCE_DIR} ${MLIR_BINARY_DIR})
