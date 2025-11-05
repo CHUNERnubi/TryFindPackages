@@ -29,7 +29,8 @@ macro(set_llvm_flags)
     # makes cmake complains about long path on Windows
     set(LLVM_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
     set(LLVM_INCLUDE_EXAMPLES OFF CACHE BOOL "" FORCE)
-    set(LLVM_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
+    set(LLVM_BUILD_TOOLS ON CACHE BOOL "" FORCE)
+    set(LLVM_ENABLE_TOOLS "llvm-tblgen" CACHE STRING "" FORCE)  # Add this line
     set(LLVM_BUILD_UTILS ON CACHE BOOL "" FORCE)
     set(LLVM_INSTALL_UTILS ON CACHE BOOL "" FORCE)
 endmacro()

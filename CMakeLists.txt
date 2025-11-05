@@ -34,7 +34,7 @@ include(TableGen)
 include(AddLLVM)
 include(AddMLIR)
 
-set(LLVM_LINK_COMPONENTS Support TableGen)
+set(LLVM_LINK_COMPONENTS Support TableGen)  # TODO: this line is redundant?
 file(GLOB_RECURSE SRC_FILES ./src/*.cpp)
 add_llvm_executable(${PROJECT_NAME}
   ${SRC_FILES}
@@ -44,7 +44,8 @@ add_dependencies(${PROJECT_NAME} LLVMSupport LLVMTableGen)
 # Configure TableGen
 set(DIALECT_DIR ${PROJECT_SOURCE_DIR}/tablegen)
 set(LLVM_TARGET_DEFINITIONS ${DIALECT_DIR}/dialect.td)
-set(MLIR_TABLEGEN_EXE $<TARGET_FILE:mlir-tblgen>)
+set(MLIR_TABLEGEN_EXE $<TARGET_FILE:mlir-tblgen>)  # it could work even without this line
+set(LLVM_TABLEGEN_EXE $<TARGET_FILE:llvm-tblgen>)
 set(MLIR_TABLEGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/inc")
 file(MAKE_DIRECTORY ${MLIR_TABLEGEN_OUTPUT_DIR})
 
